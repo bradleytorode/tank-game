@@ -95,12 +95,14 @@ class PlayerTank extends BaseTank {
 }
 
 class EnemyTank extends BaseTank {
-    constructor(scene, x, y, texture, frame, player) {
+    constructor(scene, x, y, texture, frame, player, delay, range) {
         super(scene, x, y, texture, frame);
         this.player = player;
         this.hull.angle = Phaser.Math.RND.angle();
         this.scene.physics.velocityFromRotation(this.hull.rotation, 100, this.hull.body.velocity);
         this.fireTime = 0;
+        this.delay = 0;
+        this.range = 0;
 
     }
     update(time, delta) {
@@ -143,6 +145,8 @@ class EnemyTankDuelTurret extends EnemyTank {
         this.hull.angle = Phaser.Math.RND.angle();
         this.scene.physics.velocityFromRotation(this.hull.rotation, 100, this.hull.body.velocity);
         this.fireTime = 0;
+        this.delay = 0;
+        this.range = 0;
     }
     update(time, delta) {
         super.update();
@@ -161,6 +165,8 @@ class EnemyTankSuicider extends EnemyTank {
         this.hull.angle = Phaser.Math.RND.angle();
         this.scene.physics.velocityFromRotation(this.hull.rotation, 100, this.hull.body.velocity);
         this.turret = scene.physics.add.sprite(x, y, texture, 'turret');
+        this.delay = 0;
+        this.range = 0;
     }
     update(time, delta) {
         super.update();
@@ -177,6 +183,8 @@ class EnemyTankMachinegun extends EnemyTank {
         this.hull.angle = Phaser.Math.RND.angle();
         this.scene.physics.velocityFromRotation(this.hull.rotation, 100, this.hull.body.velocity);
         this.fireTime = 0;
+        this.delay = 0;
+        this.range = 0;
     }
     update(time, delta) {
         super.update();
