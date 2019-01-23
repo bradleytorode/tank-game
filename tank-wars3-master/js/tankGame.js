@@ -95,7 +95,24 @@ function create() {
 
     for (var i = 0; i < maxEnemies; i++) {
         loc = Phaser.Geom.Rectangle.RandomOutside(outerFrame, innerFrame)
-        enemyTank = new EnemyTank(this, loc.x, loc.y, 'enemy', 'tank1', player);
+        var rand = Math.floor(Math.random() * 3)
+
+        
+        switch (rand) {
+            case: 0
+                enemyTank = new EnemyTank(this, loc.x, loc.y, 'enemy', 'tank1', player);
+                break;
+            case: 1
+                enemyTank = new EnemyTank(this, loc.x, loc.y, 'enemyDuel', 'tank1', player);
+                break;
+            case: 2
+                enemyTank = new EnemyTank(this, loc.x, loc.y, 'enemySuicider', 'tank1', player);
+                break;
+            case: 3
+                enemyTank = new EnemyTank(this, loc.x, loc.y, 'enemyMachinegun', 'tank1', player);
+                break;
+        }
+
         enemyTank.enableCollision(destructLayer);
         enemyTank.setBullets(enemyBullets)
         enemyTanks.push(enemyTank);
@@ -105,8 +122,15 @@ function create() {
                 this.physics.add.collider(enemyTank.hull, enemyTanks[j].hull);
             }
         }
+        if (enemyTank = 'enemySuicider') {
+            fireBullet = null;
+            enemyTank = startFollow(player)
+            this.physics.add.collider(enemyTank.hull, player.hull);
+        } 
     }
 }
+
+
 
 function update(time, delta) {
     player.update();
@@ -224,3 +248,5 @@ function damageWall(bullet, tile) {
     }
 
 }
+
+

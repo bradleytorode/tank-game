@@ -101,7 +101,7 @@ class EnemyTank extends BaseTank {
         this.hull.angle = Phaser.Math.RND.angle();
         this.scene.physics.velocityFromRotation(this.hull.rotation, 100, this.hull.body.velocity);
         this.fireTime = 0;
-        this.delay = 0;
+
     }
     update(time, delta) {
         super.update();
@@ -145,11 +145,12 @@ class EnemyTankDuelTurret extends EnemyTank {
         this.fireTime = 0;
     }
     update(time, delta) {
+        super.update();
 
-
-        damage() {
-            super.damage();
-        }
+        
+    }
+    damage() {
+        super.damage();
     }
 }
 
@@ -159,15 +160,13 @@ class EnemyTankSuicider extends EnemyTank {
         this.player = player;
         this.hull.angle = Phaser.Math.RND.angle();
         this.scene.physics.velocityFromRotation(this.hull.rotation, 100, this.hull.body.velocity);
-        this.fireTime = 0;
+        this.turret = scene.physics.add.sprite(x, y, texture, 'turret');
     }
     update(time, delta) {
         super.update();
     }
-
     damage() {
         super.damage();
-       
     }
 }
 
